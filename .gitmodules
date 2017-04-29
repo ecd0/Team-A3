@@ -1,0 +1,3 @@
+[submodule "src/Python-App"]
+	path = src/Python-App
+	url = git@github.com:Star-Wars-Drone/Python-App.git
