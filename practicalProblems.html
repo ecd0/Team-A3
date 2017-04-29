@@ -1,0 +1,61 @@
+<html>
+<head><title>ECE 492/592: Introduction to Autonomous Systems, Spring  2017 - Team A3: Pop a Red Balloon</title>
+<style type="text/css">
+	body{font-family:sans-serif;}
+</style>
+</head>
+<body>
+<h1>ECE 492/592: Introduction to Autonomous Systems</h1>
+<h2>Team A3: Pop a Red Balloon</h2>
+<h3>Practical Problems:</h3>
+<ul>
+  <li><b>Approach</b></li>
+  <ul>
+    <li>Because we did not know about Mavlink, our first approach was to modify ardupilot directly, which also required modifying APM planner in order to use the newly built in functionality. This proved to be</li>
+    <ul>
+      <li>Extremely dangerous, because interfering with the autopilot could cause the drone to lose control.</li>
+      <li>Time consuming and confusing.</li>
+    </ul>
+    <li>Our original plan called for a Dragonboard doing all of the image processing and then communicating that information to the BeagleBone (the bone is extremely slow at image processing, and could hardly process ~15 frames a second, while the dragonboard was consistently outputting 100+ frames a second).</li>
+    <ul>
+      <li>The Dragonboard was damaged in a freak power accident. Ordering a new one would have taken too much time, and at this point we were learning about Mavlink so we decided that rather than a dragonboard we would add a Raspberry Pi as a companion board and do the image processing on that.</li>
+    </ul>
+  </ul>
+  <li><b>Building the drone</b></li>
+  <ul>
+    <p>In retrospect, if we had known about Mavlink and dronekit from the beginning, we probably would have gone with a prebuilt drone to cut down on time spent on construction.</p>
+    <li>Barometer issues</li>
+    <ul>
+      <li>At several points during automated flights, the drone rose significantly higher than expected, even losing the signal. This nearly caused a crash at one point when we lost our SSH connection to the PI, which caused it to shut off all motors and fall out of the sky. Luckily, it was high enough that we managed to save it manually before the crash.</li>
+      <ul>
+        <li>This was resolved in the final (successful) test with the addition of some paper towel wadding around the barometer. This simple addition resulted in significantly more stable altitude tracking.</li>
+      </ul>
+    </ul>
+    <li>Power issues</li>
+    <ul>
+      <li>As mentioned before, a faulty 12V power supply fried the Dragonboard.</li>
+    </ul>
+    <li>Frame issues</li>
+    <ul>
+	  <li>The power board supplied with the frame (for controlling LEDs and the landing leg actuators) was faulty, and we were unable to repair it or source a replacement, so we did not use any of those features.</li>
+      <li>The landing legs were very sensitive to hard landings, and the plates securing the legs to the body were quickly broken. A replacement for these was designed and cut from sheet MDF, but zip ties and tape were used instead and managed well enough.</li>
+      <li>The position of the legs was also too narrow and made the drone vulnerable to tipping. This was mitigated somewhat by relying on the autopilot to land, but it still resulted in broken props on several occasions.</li>
+    </ul>
+  </ul>
+  <li><b>Mavlink command precision.</b></li>
+  <ul>
+    <li>Ardupilot does not support controlled yaw. You can only yaw in one direction, at one speed which is far too fast for any fine tuned precision. As a result, we had to change our plan to use the goto function. This meant that being able to calculate an XYZ vector to the balloon in terms of real meaningful units with a high degree of precision was critical. Previously our intention was to simply try to center the balloon in the frame, but since fine yaw and altitude adjustments were not an option, this was not a possibility.</li>
+  </ul>
+  <li><b>Image processing robustness</b></li>
+  <ul>
+    <li>Detecting a red blob indoors is relatively easy. But to be able to use it on the drone, we had to calibrate very carefully, and we had to take advantage of contour properties to be sure that objects we were looking at were in fact a balloon.</li>
+  </ul>
+</ul>
+<h3>Advice:</h3>
+<ul>
+<li>Consider using a pre-built drone. The software work required is substantial, and it would be better to spend most of your time on that as opposed to mechanical issues.</li>
+<li>If you do choose a frame, don't bother with landing legs unless you absolutely require them.</li>
+<li>Get familiar with MAVLink as early as possible.</li>
+<li>USE THE SIMULATOR (SITL/HITL), but be ready for reality to disagree with those results.</li>
+<li>Do what we did not: pop the balloon with a laser on demo day.</li>
+</body></html>
