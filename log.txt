@@ -1,0 +1,24 @@
+2025.07.11
+This an old college project. I didn't contribute much to it at the time (was overcommitted, and this class got the smaller time allocation), was mildly disappointed at the outcome, and have been bothered by all of that ever since.
+(I even had a whole music video planned out, to the tune of "Combustion" by Meshuggah.)
+
+So I want to do this properly.
+
+Stuff I need:
+- precision: of both movement and targeting
+- speed: both in terms of covering distance and control/response
+- radiant beams from the holy face of God Himself: instantaneous and complete sublimation of the unrepentant wicked and other targets of interest
+- autonomy: supply it with reasonably high-level and sophisticated "missions" beyond just flight plans
+- name: needs to be cool. "waymaker"? as in "prepare the way of the Lord" (in reference to the imminent second coming of our Lord and Savior, Jesus Christ, with fire and righteous judgement) but that also sounds too muscular. hmm...
+
+Looks like there has been some interesting work with NN controls since our project:
+https://github.com/pulp-platform/pulp-dronet
+
+but that looks slow. Imagine something like this, but with multiple laser turrets destructively illuminating things on the way:
+https://www.youtube.com/watch?v=yz2in2eFATE
+https://ieeexplore.ieee.org/document/10611665
+
+Other ideas:
+- optics? ex controlling focus point dynamically
+- conductive channels: UV lasers can ionize the air... lightning drone? (where would the energy for that come from?)
+- other DEWs? neutral particle beams? (is that even feasible at hobby drone scale?) EM interferometry? anything fringe-but-theoretically-feasible?
